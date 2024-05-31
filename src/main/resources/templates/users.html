@@ -10,7 +10,7 @@
     <table border="1">
         <tr>
             <th>ID</th>
-            <th>Username</th>
+            <th>Name</th>
             <th>E-mail</th>
             <th>Password</th>
             <th>Edit User</th>
@@ -18,21 +18,26 @@
         </tr>
         <tr>
         <tr th:each="user :${users}">
-            <td th:utext="${user.getId()}"></td>
-            <td th:utext="${user.getUsername()}"></td>
-            <td th:utext="${user.getEmail()}"></td>
-            <td th:utext="${user.getPassword()}"></td>
+        <td th:utext="${user.getId()}"></td>
+        <td th:utext="${user.getUsername()}"></td>
+        <td th:utext="${user.getEmail()}"></td>
+        <td th:utext="${user.getPassword()}"></td>
 
             <td>
-                <a th:href="@{/edit(id=${user.id})}">Edit</a>
+                <a th:href="@{/admin/edit(id=${user.id})}">Edit</a>
+
             </td>
             <td>
-                <form th:action="@{/users/delete}" method="post">
+                <form th:method="POST" th:action="@{/admin/delete}" th:object="${user}">
                     <input type="hidden" name="id" th:value="${user.getId()}"/>
                     <button type="submit">Delete</button>
                 </form>
+
             </td>
+
+
         </tr>
+
     </table>
 
 
@@ -40,7 +45,7 @@
         <h1 th:text="${msg}"></h1>
     </th:block>
     <br/>
-    <a href="/new">Create new user</a>
+    <a href="/admin/new">Create new user</a>
 
 
     <br/>
