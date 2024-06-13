@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.models.User;
 import ru.kata.spring.boot_security.demo.repositories.UserRepository;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -24,8 +23,7 @@ public class UserService {
     }
 
     public User getUserById(long id) {
-        Optional<User> foundPerson = userRepository.findById(id);
-        return foundPerson.orElse(null);
+        return userRepository.getById(id);
     }
 
     @Transactional
@@ -34,9 +32,8 @@ public class UserService {
     }
 
     @Transactional
-    public void updateUser(long id, User updateUser) {
-        updateUser.setId(id);
-        userRepository.save(updateUser);
+    public void updateUser(long id, User user) {
+        userRepository.save(user);
     }
 
     @Transactional
