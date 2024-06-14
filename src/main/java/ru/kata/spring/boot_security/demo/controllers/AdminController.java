@@ -75,7 +75,7 @@ public class AdminController {
     }
     //    обновление юзера
 
-    @PutMapping("/edit")
+    @PutMapping("/edit/{id}")
     public String update(@PathVariable("id") Long id, @ModelAttribute User user) {
         userService.updateUser(id, user);
         return "redirect:/admin";
