@@ -1,17 +1,22 @@
 package ru.kata.spring.boot_security.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.kata.spring.boot_security.demo.models.User;
 import ru.kata.spring.boot_security.demo.services.MyDetailsService;
 
+import java.security.Principal;
 
-@Controller
-@RequestMapping("/user")
+
+@RestController
+@RequestMapping({"api/user"})
 public class UserController {
 
     private final MyDetailsService myDetailsService;
@@ -22,12 +27,16 @@ public class UserController {
     }
 
     @GetMapping()
-    public String getUserById(Model model, Authentication authentication) {
-        String userName = authentication.getName();
-        User user = (User) myDetailsService.loadUserByUsername(userName);
-
-        model.addAttribute("user", user);
-        return "user";
+    public ResponseEntity<User> showUser(Principal principal) {
+        return ResponseEntity.ok((User)myDetailsService.loadUserByUsername(principal.getName()));
+    }
+    @GetMapping("/logout")
+    public String logoutPage() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            SecurityContextHolder.getContext().setAuthentication(null);
+        }
+        return "redirect:/login?logout";
     }
 }
 
