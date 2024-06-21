@@ -38,6 +38,8 @@ public class UserService {
 
     @Transactional
     public void deleteUser(long id) {
-        userRepository.deleteById(id);
+        if (userRepository.findById(id).isPresent()){
+            userRepository.deleteById(id);
+    }
     }
 }
