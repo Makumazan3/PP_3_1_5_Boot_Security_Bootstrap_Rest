@@ -58,18 +58,17 @@ public class AdminRestController {
     }
 
     //    получение юзера по id
-    @GetMapping(value = "/show{id}")
-    public ResponseEntity<User> getOneUser(@PathVariable(name = "id") long id) {
+    @GetMapping(value = "/show/{id}")
+    public ResponseEntity<User> getOneUser(@PathVariable(name = "id") Long id) {
         final User user = userService.getUserById(id);
 
-        return user != null
-                ? new ResponseEntity<>(user, HttpStatus.OK)
-                : new ResponseEntity<>(user, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(user, HttpStatus.OK)
+                ;
     }
 
     //    обновление юзера
     @PutMapping(value = "/update")
-    public ResponseEntity<User> updateUser(@PathVariable(name = "id") long id,
+    public ResponseEntity<User> updateUser(@PathVariable(name = "id") Long id,
                                         @RequestBody User user) {
         userService.updateUser(id, user);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -80,7 +79,7 @@ public class AdminRestController {
         return ResponseEntity.ok(userByName);
     }
     //    удаление юзера
-    @DeleteMapping(value = "/delete{id}")
+    @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<User> delete(@PathVariable(name = "id") long id){
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

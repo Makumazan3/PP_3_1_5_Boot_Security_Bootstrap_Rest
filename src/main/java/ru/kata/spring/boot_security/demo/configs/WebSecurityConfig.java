@@ -31,17 +31,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/auth/login","/error").permitAll()
-                .antMatchers("/user/**").hasAnyRole("USER","ADMIN")
+                .antMatchers("/", "/index").permitAll()
+                .antMatchers("/logout").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/user/**").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().successHandler(successUserHandler)
-                .loginProcessingUrl("/process_login")
-                .successHandler(successUserHandler)
-                .failureUrl("/auth/login?error")
+                .permitAll()
                 .and()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/login");
+                .logout()
+                .permitAll()
+                .and()
+                .csrf().disable();
+
     }
 
 //    шифрование пароля
