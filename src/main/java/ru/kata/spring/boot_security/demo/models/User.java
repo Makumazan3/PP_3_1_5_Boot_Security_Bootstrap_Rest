@@ -27,7 +27,7 @@ public class User implements UserDetails {
     private String lastName;
 
     @Column(name = "Age")
-    private long age;
+    private Long age;
 
     @Column(name = "Email")
     private String email;
@@ -44,7 +44,9 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String username, String lastName, long age, String email, List<Role> roles) {
+
+    public User(Long id, String username, String lastName, long age, String email, List<Role> roles) {
+        this.id = id;
         this.username = username;
         this.lastName = lastName;
         this.age = age;
@@ -52,11 +54,11 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

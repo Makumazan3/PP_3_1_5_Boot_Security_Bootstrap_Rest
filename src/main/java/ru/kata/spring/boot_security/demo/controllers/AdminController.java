@@ -23,7 +23,6 @@ public class AdminController {
 
     @GetMapping(value = "/")
     public String login() {
-
         return "redirect:/login";
     }
 
@@ -33,7 +32,6 @@ public class AdminController {
         if (auth != null) {
             SecurityContextHolder.getContext().setAuthentication(null);
         }
-
         return "redirect:/login?logout";
     }
 
