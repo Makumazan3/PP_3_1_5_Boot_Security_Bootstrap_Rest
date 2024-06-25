@@ -84,8 +84,8 @@ public class AdminRestController {
         User userByName = (User) myDetailsService.loadUserByUsername(user.getUsername());
         return ResponseEntity.ok(userByName);
     }
-
     //    удаление юзера
+
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<User> delete(@PathVariable(name = "id") long id) {
         userService.deleteUser(id);
