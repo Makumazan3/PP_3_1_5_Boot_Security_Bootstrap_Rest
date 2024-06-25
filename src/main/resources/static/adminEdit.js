@@ -13,7 +13,7 @@ async function editModalData(id) {
     let usersPageEd = await fetch('/api/admin/show/' + id);
     await usersPageEd.json().then(user => {
         id_ed.value = user.id;
-        name_ed.value = user.name;
+        name_ed.value = user.username;
         lastName_ed.value = user.lastName;
         age_ed.value = user.age;
         email_ed.value = user.email;

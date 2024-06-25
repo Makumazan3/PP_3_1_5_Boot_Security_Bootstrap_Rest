@@ -1,5 +1,3 @@
-
-
 const url = 'http://localhost:8080/api/admin/users'
 const t_body = document.getElementById(`tbody`)
 
@@ -15,7 +13,7 @@ async function findAll() {
         users_table +=
             `<tr>
                 <td>${user.id}</td>
-                <td>${user.name}</td>
+                <td>${user.username}</td>
                 <td>${user.lastName}</td>
                 <td>${user.age}</td>
                 <td>${user.email}</td>
