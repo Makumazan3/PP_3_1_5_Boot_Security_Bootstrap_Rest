@@ -79,7 +79,7 @@ public class AdminRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/userInfo")
+    @GetMapping("/users/{id}")
     public ResponseEntity<User> showUserInfo(@AuthenticationPrincipal User user) throws ChangeSetPersister.NotFoundException {
         User userByName = (User) myDetailsService.loadUserByUsername(user.getUsername());
         return ResponseEntity.ok(userByName);

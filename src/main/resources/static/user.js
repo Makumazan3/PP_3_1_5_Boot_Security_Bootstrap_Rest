@@ -9,14 +9,14 @@ function showUserInfo(user) {
             let temp = '';
             table.innerHTML = `<tr> 
                 <td> ${user.id} </td>
-                <td> ${user.username} </td>
+                <td> ${user.name} </td>
                 <td> ${user.lastName} </td>
                 <td> ${user.age} </td>
                 <td> ${user.email} </td>
                  <td>${user.roles.map(role => role.name).join(' ')}</td> 
             </tr>`;
             data.innerHTML = temp;
-            panel.innerHTML = `<h5>${user.username} with roles: ${user.roles.map(role => role.name).join(' ')}</h5>`
+            panel.innerHTML = `<h5>${user.name} with roles: ${user.roles.map(role => role.name).join(' ')}</h5>`
         });
 
 

@@ -15,7 +15,7 @@ async function findAll() {
         users_table +=
             `<tr>
                 <td>${user.id}</td>
-                <td>${user.username}</td>
+                <td>${user.name}</td>
                 <td>${user.lastName}</td>
                 <td>${user.age}</td>
                 <td>${user.email}</td>

@@ -16,7 +16,7 @@ form_new.addEventListener("submit", ev => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            username: form_new.username.value,
+            name: form_new.name.value,
             lastName:  form_new.lastName.value,
             age: form_new.age.value,
             email: form_new.email.value,

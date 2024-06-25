@@ -1,6 +1,6 @@
 const form_ed = document.getElementById("formForEditing");
 const id_ed = document.getElementById('idE');
-const username_ed = document.getElementById('usernameE');
+const name_ed = document.getElementById('nameE');
 const lastName_ed = document.getElementById('lastNameE');
 const age_ed = document.getElementById('ageE');
 const email_ed = document.getElementById('emailE');
@@ -13,7 +13,7 @@ async function editModalData(id) {
     let usersPageEd = await fetch('/api/admin/show/' + id);
     await usersPageEd.json().then(user => {
         id_ed.value = user.id;
-        username_ed.value = user.username;
+        name_ed.value = user.name;
         lastName_ed.value = user.lastName;
         age_ed.value = user.age;
         email_ed.value = user.email;
@@ -48,7 +48,7 @@ form_ed.addEventListener('submit', async (e) => {
         },
         body: JSON.stringify({
             id: id_ed.value,
-            name: username_ed.value,
+            name: name_ed.value,
             lastName: lastName_ed.value,
             age: age_ed.value,
             email: email_ed.value,

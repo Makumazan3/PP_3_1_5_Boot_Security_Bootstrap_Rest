@@ -1,8 +1,8 @@
 const form_del = document.getElementById('formForDeleting');
-const username_del = document.getElementById('usernameD');
+const name_del = document.getElementById('firstNameD');
 const lastName_del = document.getElementById('lastNameD');
 const age_del = document.getElementById('ageD');
-const email_del = document.getElementById('emailD');
+const username_del = document.getElementById('emailD');
 const roleAdmin_del = document.getElementById('roleAdminD');
 const roleUser_del = document.getElementById('roleUserD');
 var id_del = 0;
@@ -12,10 +12,10 @@ async function deleteModalData(id) {
     let usersPageDel = await fetch(urlForDel);
     await usersPageDel.json().then(user => {
         id_del = user.id;
-        username_del.value = user.username;
+        name_del.value = user.name;
         lastName_del.value = user.lastName;
         age_del.value = user.age;
-        email_ed.value = user.email;
+        username_del.value = user.email;
         if (user.roles.length === 2) {
             roleAdmin_del.selected = true;
             roleUser_del.selected = true;
